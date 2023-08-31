@@ -1,0 +1,330 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla&display=swap");
+
+:root {
+  --color-1: #a6d1c9;
+  --color-2: #e83c38;
+  --bs-body-color: var(--color-1);
+}
+
+*,
+*::before,
+*::after {
+  padding: 0 0 0 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+.modal {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-2) var(--color-1);
+}
+
+html {
+  /* scroll-behavior: smooth; */
+}
+
+body {
+  font-family: "Karla", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
+}
+
+/* Navbar section */
+.navbar {
+  background-color: var(--color-1);
+  --bs-border-color: var(--color-2);
+}
+
+.navbar-nav .nav-link,
+.navbar-nav .nav-link.active,
+.navbar .navbar-brand,
+.navbar .navbar-brand:hover {
+  color: var(--color-2);
+  --bs-nav-link-hover-color: var(--color-2);
+}
+
+.toggler-icon {
+  color: var(--color-2);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 0.2rem;
+}
+
+.credit-text {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  width: 200px;
+  transition: transform 500ms ease, opacity 500ms ease;
+}
+
+.credit-text .name {
+  display: inline-block;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.abouzethar {
+  opacity: 0;
+}
+
+.navbar-brand:hover .credit-svg {
+  animation: rotate-credit-svg 250ms linear;
+}
+
+.navbar-brand:hover .code-by {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.navbar-brand:hover .name {
+  transform: translateX(-50%);
+}
+
+.navbar-brand:hover .abouzethar {
+  opacity: 1;
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-2);
+  translate: var(--_translate, 0);
+  scale: var(--_width, 0) 1;
+  transition: scale 300ms var(--_scale-delay, 0ms),
+    translate 500ms var(--_translate-delay, 0ms);
+}
+
+.nav-item:hover {
+  --_width: 1;
+}
+
+@supports selector(:has(h1)) {
+  .nav-item:hover + .nav-item {
+    --_translate: -100%;
+    --_scale-delay: 300ms;
+    --_translate-delay: 200ms;
+  }
+
+  .nav-item:has(+ :hover) {
+    --_translate: 100%;
+    --_scale-delay: 300ms;
+    --_translate-delay: 200ms;
+  }
+}
+
+/* intro-section */
+.intro-section {
+  height: 100vh;
+  background-color: var(--color-1);
+  color: var(--color-2);
+}
+
+.scroll-down-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scroll-down-link {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease-in-out;
+}
+
+.scroll-down-link:hover {
+  transform: translateY(5px);
+}
+
+.scroll-down-text {
+  font-size: 1rem;
+  color: var(--color-2);
+}
+
+.scroll-down-arrow {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arrow {
+  width: 2rem;
+  height: 2rem;
+  border: solid var(--color-2);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin: 3px;
+  animation: arrow-pulsate 2s infinite;
+}
+
+/* Tech stack section */
+.tech-section {
+  padding: 5rem 0 0 0;
+  width: 100%;
+  background-color: var(--color-1);
+  color: var(--color-2);
+  --bs-border-color: var(--color-2);
+
+  @media (max-width: 767px) {
+    .row-cols-2 .col:nth-child(2n + 1) {
+      border-left: none !important;
+    }
+
+    .row-cols-2 .col:nth-child(2n) {
+      border-right: none !important;
+    }
+
+    .row-cols-2 .responsive-border {
+      border-bottom: 1px solid !important;
+    }
+  }
+}
+
+/* Projects section */
+.projects {
+  background-color: var(--color-1);
+  color: var(--color-2);
+  --bs-border-color: var(--color-2);
+}
+
+.view-btn {
+  --bs-btn-bg: var(--color-1) !important;
+  --bs-btn-color: var(--color-2) !important;
+  --bs-btn-border-color: var(--color-1) !important;
+  --bs-btn-hover-bg: var(--color-1) !important;
+  --bs-btn-hover-color: var(--color-2) !important;
+  --bs-btn-active-color: var(--color-2);
+  --bs-btn-active-bg: var(--color-1);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-border-color: var(--color-1);
+  opacity: 0;
+  z-index: 10;
+  transition: opacity 500ms ease;
+}
+
+.project-link:hover .view-btn {
+  opacity: 1;
+}
+
+.project-link:hover img {
+  filter: blur(5px);
+}
+
+/* Projects Modal section */
+.carousel .carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23e83c38' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel .carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23e83c38' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'/%3e%3c/svg%3e");
+}
+
+.carousel .carousel-indicators button {
+  background-color: var(--color-2);
+}
+
+.close-modal svg:hover {
+  cursor: pointer;
+  animation: rotate-close-button 250ms linear;
+}
+
+.modal-dialog {
+  background-color: var(--color-1);
+  color: var(--color-2);
+}
+
+.modal-footer {
+  --bs-modal-footer-border-color: var(--color-2);
+}
+
+.github-button svg {
+  height: 4rem;
+  width: 4rem;
+  color: var(--color-2);
+}
+
+/* Stack icons */
+.stack-icons {
+  width: 4rem;
+  height: 4rem;
+  color: var(--color-2);
+}
+
+.stack-icons-bigger {
+  width: 6rem;
+  height: 6rem;
+  color: var(--color-2);
+}
+
+/* About & Contact section */
+.about-section,
+.contact-section {
+  width: 100%;
+  background-color: var(--color-1);
+  color: var(--color-2);
+  --bs-border-color: var(--color-2);
+}
+
+.contact-link {
+  color: var(--color-2);
+  text-decoration: none;
+}
+
+footer {
+  background-color: var(--color-1);
+  color: var(--color-2);
+  --bs-border-color: var(--color-2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-2);
+}
+
+/* Animations */
+@keyframes rotate-credit-svg {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes rotate-close-button {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 90deg;
+  }
+}
+
+@keyframes arrow-pulsate {
+  0% {
+    transform: rotate(45deg) scale(1);
+  }
+  50% {
+    transform: rotate(45deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(45deg) scale(1);
+  }
+}
